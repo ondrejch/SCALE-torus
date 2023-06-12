@@ -23,14 +23,16 @@ def SCALE_approximate_toroidal_pipe(id_start, id_boundary, mixture_inside, mixtu
     cyl_ids_inside = []
     cyl_ids_outside = []
 
-    cylinder_height = 2.0 * (major_radius + minor_radius_inside) * math.sin(math.pi / num_cylinders)
+    cylinder_length = 2.0 * (major_radius + minor_radius_outside) * math.sin(math.pi / num_cylinders)
+    apothem_over_radius = math.cos(math.pi / num_cylinders)
+
     # Inside
     for i in range(num_cylinders):
         angle = i * (2.0 * math.pi / num_cylinders)
-        left = -cylinder_height / 2.0
-        right = cylinder_height / 2.0
-        origin_x = major_radius * math.cos(angle) + X
-        origin_y = major_radius * math.sin(angle) + Y
+        left = -cylinder_length / 2.0
+        right = cylinder_length / 2.0
+        origin_x = major_radius * math.cos(angle) * apothem_over_radius + X
+        origin_y = major_radius * math.sin(angle) * apothem_over_radius + Y
         origin_z = Z
         angle_deg = math.degrees(angle) - 90.0
 
@@ -42,10 +44,10 @@ def SCALE_approximate_toroidal_pipe(id_start, id_boundary, mixture_inside, mixtu
     # Outide
     for i in range(num_cylinders):
         angle = i * (2.0 * math.pi / num_cylinders)
-        left = -cylinder_height / 2.0
-        right = cylinder_height / 2.0
-        origin_x = major_radius * math.cos(angle) + X
-        origin_y = major_radius * math.sin(angle) + Y
+        left = -cylinder_length / 2.0
+        right = cylinder_length / 2.0
+        origin_x = major_radius * math.cos(angle) * apothem_over_radius + X
+        origin_y = major_radius * math.sin(angle) * apothem_over_radius + Y
         origin_z = Z
         angle_deg = math.degrees(angle) - 90.0
 

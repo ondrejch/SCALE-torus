@@ -18,15 +18,15 @@ def SCALE_approximate_torus(id_cyl0, id_boundary, mixture, major_radius, minor_r
     deck = []
     cyl_ids = []
 
-    # side of the outer polygon
-    cylinder_height = 2.0 * (major_radius + minor_radius) * math.sin(math.pi / num_cylinders)
+    cylinder_length = 2.0 * (major_radius + minor_radius) * math.sin(math.pi / num_cylinders)
+    apothem_over_radius = math.cos(math.pi / num_cylinders)
 
     for i in range(num_cylinders):
         angle = i * (2.0 * math.pi / num_cylinders)
-        left = -cylinder_height / 2.0
-        right = cylinder_height / 2.0
-        origin_x = major_radius * math.cos(angle)
-        origin_y = major_radius * math.sin(angle)
+        left = -cylinder_length / 2.0
+        right = cylinder_length / 2.0
+        origin_x = major_radius * math.cos(angle) * apothem_over_radius
+        origin_y = major_radius * math.sin(angle) * apothem_over_radius
         origin_z = 0.0
         angle_deg = math.degrees(angle) - 90.0
 
@@ -57,7 +57,7 @@ id_boundary = 9999      # Boundary ID
 mixture = 1             # Material mixture for the cylinder
 major_radius = 20       # Major radius of the torus
 minor_radius = 2        # Minor radius of the torus
-num_cylinders = 32      # How may cylinders to approximate the torus
+num_cylinders = 16      # How may cylinders to approximate the torus
 
 SCALE_torus = SCALE_approximate_torus(id_cyl0, id_boundary, mixture, major_radius, minor_radius, num_cylinders)
 
