@@ -61,6 +61,26 @@ num_cylinders = 32      # How may cylinders to approximate the torus
 
 SCALE_torus = SCALE_approximate_torus(id_cyl0, id_boundary, mixture, major_radius, minor_radius, num_cylinders)
 
+header='''=csas6 parm=(   )
+torus approximated with cylinders
+ce_v7.1_endf
+
+read comp
+ water 1    end
+ ss304 2    end
+end comp
+
+read geometry
+global unit 1
+'''
+
+footer='''end geometry
+end data
+end
+'''
+
 # Print the SCALE deck piece
-for deck in SCALE_torus:
-    print(deck)
+print(header)
+for torus_line in SCALE_torus:
+    print(torus_line)
+print(footer)
