@@ -57,8 +57,10 @@ def SCALE_approximate_toroidal_pipe(id_start, id_boundary, mixture_inside, mixtu
         cyl_ids_outside.append(shape_id)
 
     # bounding box
-    cuboid = f"cuboid {id_boundary} 4p{major_radius + 2.0 * minor_radius_outside} 2p{3.0 * minor_radius_outside}"
-    deck.append(cuboid)
+    bbox = f"cuboid {id_boundary} 4p{major_radius + minor_radius_outside} 2p{minor_radius_outside}"
+    # bbox = f"cylinder {id_boundary} {major_radius + minor_radius_outside} 2p{minor_radius_outside}"
+
+    deck.append(bbox)
 
     # mixtures inside
     shifted_cyl_ids_inside = [cyl_ids_inside[-1]] + cyl_ids_inside[:-1]
