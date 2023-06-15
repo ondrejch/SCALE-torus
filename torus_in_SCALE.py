@@ -36,7 +36,7 @@ def SCALE_approximate_torus(id_cyl0, id_boundary, mixture, major_radius, minor_r
         cyl_ids.append(shape_id)
 
     # bounding box
-    cuboid = f"cuboid {id_boundary} 4p{major_radius + 2.0 * minor_radius} 2p{3.0 * minor_radius}"
+    cuboid = f"cuboid {id_boundary} 4p{major_radius + minor_radius} 2p{minor_radius} origin x={X} y={Y} z={Z}"
     deck.append(cuboid)
 
     # mixtures
